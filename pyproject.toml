@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "accreditations-scraper"
+version = "0.1.0"
+description = ""
+authors = ["Delemangi <milev.stefan@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "accreditations_scraper" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+selenium = "^4.10.0"
+pandas = "^2.0.3"
+openpyxl = "^3.1.2"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.275"
+black = "^23.3.0"
+mypy = "^1.4.1"
+pandas-stubs = "^2.0.2.230605"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+select = [
+    # pyflakes
+    "F",
+    # pycodestyle
+    "E",
+    "W",
+    # flake8-2020
+    "YTT",
+    # flake8-bandit
+    "S",
+    # pep8-naming
+    "N",
+    # flake8-bugbear
+    "B",
+    # flake8-quotes
+    "Q",
+    # flake-8-pie
+    "PIE",
+    # flake-8-return
+    "RET",
+    # pylint
+    "PLE",
+    "PLR",
+    "PLW",
+    # pyupgrade
+    "UP",
+    # ruff
+    "RUF",
+    # django
+    "DJ",
+]
+ignore = ["RUF012"]
+target-version = "py311"
