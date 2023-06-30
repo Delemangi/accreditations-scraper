@@ -121,7 +121,7 @@ def get_courses_data(webdriver: WebDriver, urls: list[str]) -> pd.DataFrame:
 
     for url in urls:
         webdriver.get(url)
-        time.sleep(0.3)
+        time.sleep(0.4)
 
         code = webdriver.find_element(
             By.CSS_SELECTOR, selectors.course_code_input
@@ -231,7 +231,7 @@ def main() -> None:
     time.sleep(2)
 
     df_1 = get_courses(webdriver, limit)
-    df_2 = get_courses_data(webdriver, cast(Series[str], df_1.loc[:, "URL"]).tolist())
+    df_2 = get_courses_data(webdriver, cast(Series, df_1.loc[:, "URL"]).tolist())
     df = pd.merge(df_1, df_2, on="Code", how="left")
 
     folder_path = Path("./results")
