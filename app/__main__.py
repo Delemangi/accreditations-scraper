@@ -38,6 +38,13 @@ def get_args() -> argparse.Namespace:
     arg_parser = argparse.ArgumentParser()
 
     arg_parser.add_argument(
+        "--file",
+        "-f",
+        type=str,
+        help="File name",
+        default="output.csv",
+    )
+    arg_parser.add_argument(
         "--cycle",
         "-c",
         type=str,
@@ -205,6 +212,7 @@ def main() -> None:
         export_results(export)
         return
 
+    file_name: str = args.file
     cycle: str | None = args.cycle
     year: str | None = args.year
     limit: int = args.limit
@@ -228,7 +236,7 @@ def main() -> None:
 
     folder_path = Path("./results")
     folder_path.mkdir(parents=True, exist_ok=True)
-    df.to_csv(folder_path / f"cycle_{cycle}.csv", index=False)
+    df.to_csv(folder_path / f"{file_name}", index=False)
 
     print(df)
 
