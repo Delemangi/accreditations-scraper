@@ -8,7 +8,7 @@ If you have Poetry, you can use `poetry install`, otherwise, `pip install -r req
 
 ## Running
 
-`[poetry run] python -m app [-c ...] [-l ...] [-e ...]`
+`[poetry run] python -m app [-c ...] [-l ...] [-y ...] [-e ...]`
 
 Arguments:
 
