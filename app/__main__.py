@@ -42,7 +42,14 @@ def get_args() -> argparse.Namespace:
         "-c",
         type=str,
         help="Cycle",
-        default="1",
+        default=None,
+    )
+    arg_parser.add_argument(
+        "--year",
+        "-y",
+        type=str,
+        help="Year",
+        default=None,
     )
     arg_parser.add_argument(
         "--limit",
@@ -62,6 +69,12 @@ def select_cycle(webdriver: WebDriver, cycle: str) -> None:
     cycle_select = webdriver.find_element(By.CSS_SELECTOR, selectors.cycle_select)
     cycle_select_element = Select(cycle_select)
     cycle_select_element.select_by_value(cycle)
+
+
+def select_year(webdriver: WebDriver, year: str) -> None:
+    year_select = webdriver.find_element(By.CSS_SELECTOR, selectors.year_select)
+    year_select_element = Select(year_select)
+    year_select_element.select_by_value(selectors.year_values[year])
 
 
 def get_courses(webdriver: WebDriver, limit: int) -> pd.DataFrame:
@@ -192,15 +205,23 @@ def main() -> None:
         export_results(export)
         return
 
-    cycle: str = args.cycle
+    cycle: str | None = args.cycle
+    year: str | None = args.year
     limit: int = args.limit
 
     cookies = get_cookies()
     webdriver = get_webdriver(cookies)
     webdriver.get(URL)
+
     time.sleep(2)
-    select_cycle(webdriver, cycle)
+
+    if cycle is not None:
+        select_cycle(webdriver, cycle)
+    if year is not None:
+        select_year(webdriver, year)
+
     time.sleep(2)
+
     df_1 = get_courses(webdriver, limit)
     df_2 = get_courses_data(webdriver, cast(Series[str], df_1.loc[:, "URL"]).tolist())
     df = pd.merge(df_1, df_2, on="Code", how="left")

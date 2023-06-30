@@ -1,6 +1,8 @@
 table_row = "tr.ng-scope"
 
 cycle_select = "select[ng-model='main.StudyCycle']"
+year_select = "select[ng-model='main.AccreditationId']"
+
 courses_table = "table.table.table-responsive"
 course_code = "td:nth-of-type(2)"
 course_name = "td:nth-of-type(3)"
@@ -19,3 +21,9 @@ course_professor = "td:nth-child(2)"
 
 dependencies_button = "a[href='#dependencies']"
 dependencies = "textarea[name='DependencyText']"
+
+year_values = {
+    "2013": "number:1",
+    "2018": "number:2",
+    "2023": "number:4",
+}

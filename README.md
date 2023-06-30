@@ -12,7 +12,8 @@ If you have Poetry, you can use `poetry install`, otherwise, `pip install -r req
 
 Arguments:
 
-- `-c` or `--cycle`: select the cycle of the courses you want to scrape (1, 2, 3, default is 1)
+- `-c` or `--cycle`: select the cycle of the courses you want to scrape (1, 2, 3, default is all)
+- `-y` or `--year`: select the accreditation year of the courses you want to scrape (2023, 2018, 2013, default is all)
 - `-l` or `--limit`: select the number of courses you wish to scrape (default is 0 to scrape all)
 - `-e` or `--eexport`: select the .csv file with the results to clean up (this interrupts the normal flow of the script, by only cleaning up an existing file, and not scraping)
 
